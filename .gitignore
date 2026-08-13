@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+
+# Streamlit secrets (never commit the real one)
+.streamlit/secrets.toml
+
+# Dataset images (too large for git — keep the CSV, ignore raw images)
+data/images/*.jpg
+data/images/*.jpeg
+data/images/*.png
+data/images/*.webp
+data/images/.gitkeep
+# Build log
+data/build_errors.log
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp files
+tmp/
+*.tmp
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
