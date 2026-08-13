@@ -232,7 +232,7 @@ def build_agent(
     index: SareeIndex,
     results_store: List[Dict[str, Any]],
     google_api_key: Optional[str] = None,
-    model_name: str = "gemini-2.5-flash",
+    model_name: str = "gemini-3.5-flash-lite",
 ) -> SareeAgent:
     return SareeAgent(
         embedder=embedder,

@@ -4,15 +4,15 @@ A conversational AI agent that finds visually similar sarees from a fashion cata
 Upload any saree image and the agent retrieves the closest visual matches by colour,
 fabric texture, weave pattern, border, and pallu work.
 
-**Live Demo**: _[link after deploy]_  
-**GitHub**: _[this repo]_
+**Live Demo**: https://saree-search-agent.streamlit.app  
+**GitHub**: https://github.com/shub15/saree-search-agent
 
 ---
 
 ## ✨ Features
 
 - 🔍 **Fine-grained image similarity** — distinguishes subtle differences in fabric and print
-- 💬 **Natural chat interface** — Gemini 1.5 Flash orchestrates tool calls conversationally
+- 💬 **Natural chat interface** — Gemini 3.5 Flash Lite orchestrates tool calls conversationally
 - 🖼️ **Image upload or URL** — works with local files or any public image link
 - ⚡ **Instant search** — pre-built FAISS index, no re-embedding at query time
 - 🎨 **Premium dark UI** — glassmorphism design with animated result cards
@@ -28,7 +28,7 @@ User (image + chat)
  Streamlit App (app.py)
        │ LangChain AgentExecutor
        ▼
- Gemini 1.5 Flash ──calls──▶  find_similar_sarees tool (agent.py)
+ Gemini Flash ──calls──▶  find_similar_sarees tool (agent.py)
                                         │
                                         ▼
                           FashionEmbedder.embed_query()  (embedder.py)
@@ -65,7 +65,7 @@ Loaded via `open_clip` from the HuggingFace Hub (`hf-hub:Marqo/marqo-fashionSigL
 - Pre-built index committed to the repo — zero startup cost in deployed app
 - No external service, no API key, no running infra
 
-### Agent Framework: LangChain + Gemini 1.5 Flash
+### Agent Framework: LangChain + Gemini 3.5 Flash Lite
 
 - `@tool` decorator defines `find_similar_sarees` with a clear input/output schema
 - `create_tool_calling_agent` + `AgentExecutor` handles the ReAct loop
@@ -214,7 +214,7 @@ tailortalk-saree-search/
 | Base64 thumbnails in JSON | Avoids image hosting; ~5-8 MB JSON vs. hosting 1 K images externally |
 | CPU inference | Streamlit free tier has no GPU; model still runs in ~1-2s per query |
 | 85/15 visual/colour split | Tuned heuristically; richer fusion (e.g. per-region attention) would improve further |
-| Gemini 1.5 Flash | Free tier; GPT-4o / Claude Sonnet would give better conversational quality |
+| Gemini 3.5 Flash Lite | Free tier; GPT-4o / Claude Sonnet would give better conversational quality |
 | No fine-tuning | Fine-tuning on labelled saree pairs (e.g. via triplet loss) would push quality higher |
 
 ---

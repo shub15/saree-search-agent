@@ -40,25 +40,23 @@ logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# Custom CSS — premium dark fashion aesthetic
+# Custom CSS — monochromatic dark fashion aesthetic
 # ---------------------------------------------------------------------------
 CUSTOM_CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
 
 :root {
-    --bg-base:      #0D0D1A;
-    --bg-elevated:  #13132A;
+    --bg-base:      #0D0D0D;
+    --bg-elevated:  #141414;
     --bg-card:      rgba(255,255,255,0.04);
-    --border:       rgba(255,255,255,0.08);
-    --gold:         #C9A96E;
-    --gold-light:   #E8C98A;
-    --purple:       #7B61FF;
-    --purple-light: #A594FF;
-    --text-primary: #EEEEF5;
-    --text-muted:   #8888AA;
-    --success:      #4CAF82;
-    --shadow:       0 8px 32px rgba(0,0,0,0.4);
+    --border:       rgba(255,255,255,0.09);
+    --accent:       #E8E8E8;
+    --accent-dim:   #A0A0A0;
+    --text-primary: #EEEEEE;
+    --text-muted:   #777777;
+    --success:      #AAAAAA;
+    --shadow:       0 8px 32px rgba(0,0,0,0.5);
     --radius-lg:    16px;
     --radius-md:    10px;
     --radius-sm:    6px;
@@ -79,10 +77,7 @@ footer { visibility: hidden; }
 .brand-title {
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
-    background: linear-gradient(135deg, var(--gold), var(--purple-light));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent);
     margin: 0; line-height: 1.2;
 }
 .brand-subtitle {
@@ -91,14 +86,14 @@ footer { visibility: hidden; }
 }
 .sidebar-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    background: var(--border);
     margin: 16px 0;
 }
 .stat-pill {
     display: inline-flex; align-items: center; gap: 6px;
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: 20px; padding: 4px 12px;
-    font-size: 0.78rem; color: var(--gold); margin: 4px 2px;
+    font-size: 0.78rem; color: var(--accent-dim); margin: 4px 2px;
 }
 .section-label {
     font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
@@ -109,7 +104,7 @@ footer { visibility: hidden; }
     background: var(--bg-card); border: 1px dashed var(--border);
     border-radius: var(--radius-md); padding: 4px; transition: border-color 0.2s;
 }
-[data-testid="stFileUploader"]:hover { border-color: var(--gold); }
+[data-testid="stFileUploader"]:hover { border-color: var(--accent-dim); }
 
 [data-testid="stTextInput"] input {
     background: var(--bg-card) !important; border: 1px solid var(--border) !important;
@@ -117,33 +112,33 @@ footer { visibility: hidden; }
     font-family: 'Outfit', sans-serif !important;
 }
 [data-testid="stTextInput"] input:focus {
-    border-color: var(--gold) !important;
-    box-shadow: 0 0 0 2px rgba(201,169,110,0.15) !important;
+    border-color: var(--accent-dim) !important;
+    box-shadow: 0 0 0 2px rgba(200,200,200,0.1) !important;
 }
 
 .stButton > button {
     width: 100%;
-    background: linear-gradient(135deg, #7B61FF, #C9A96E) !important;
+    background: var(--accent) !important;
     border: none !important; border-radius: var(--radius-md) !important;
-    color: #fff !important; font-family: 'Outfit', sans-serif !important;
+    color: #0D0D0D !important; font-family: 'Outfit', sans-serif !important;
     font-weight: 600 !important; font-size: 0.9rem !important;
     padding: 10px 20px !important; transition: opacity 0.2s, transform 0.1s !important;
 }
-.stButton > button:hover { opacity: 0.88 !important; transform: translateY(-1px) !important; }
+.stButton > button:hover { opacity: 0.85 !important; transform: translateY(-1px) !important; }
 .stButton > button:active { transform: translateY(0) !important; }
 
 .chat-header { display: flex; align-items: center; gap: 12px; padding: 20px 24px 12px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
 .chat-header-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text-primary); margin: 0; }
 .chat-header-status { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--success); margin: 0; }
-.status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); animation: pulse 2s infinite; }
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-dim); animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
 [data-testid="stChatInput"] {
     border: 1px solid var(--border) !important; border-radius: var(--radius-lg) !important;
     background: var(--bg-elevated) !important;
 }
 [data-testid="stChatInput"]:focus-within {
-    border-color: var(--gold) !important; box-shadow: 0 0 0 3px rgba(201,169,110,0.12) !important;
+    border-color: var(--accent-dim) !important; box-shadow: 0 0 0 3px rgba(200,200,200,0.08) !important;
 }
 
 .result-grid {
@@ -155,7 +150,7 @@ footer { visibility: hidden; }
     border-radius: var(--radius-md); overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
-.result-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--gold); }
+.result-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent-dim); }
 .result-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
 .result-card-body { padding: 8px 10px; }
 .result-filename { font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
@@ -163,20 +158,20 @@ footer { visibility: hidden; }
 .result-price-row { margin-bottom: 6px; font-size: 0.82rem; }
 .result-footer { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
 .result-score { display: inline-flex; align-items: center; gap: 4px; font-size: 0.78rem; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
-.view-btn { font-size: 0.72rem; font-weight: 600; color: var(--gold); text-decoration: none; padding: 2px 8px; border: 1px solid rgba(201,169,110,0.35); border-radius: 20px; transition: background 0.15s; white-space: nowrap; }
-.view-btn:hover { background: rgba(201,169,110,0.12); }
-.score-high   { background: rgba(76,175,130,0.18);  color: #4CAF82; }
-.score-medium { background: rgba(201,169,110,0.18); color: var(--gold); }
-.score-low    { background: rgba(136,136,170,0.18); color: var(--text-muted); }
+.view-btn { font-size: 0.72rem; font-weight: 600; color: var(--accent-dim); text-decoration: none; padding: 2px 8px; border: 1px solid rgba(200,200,200,0.2); border-radius: 20px; transition: background 0.15s; white-space: nowrap; }
+.view-btn:hover { background: rgba(200,200,200,0.08); }
+.score-high   { background: rgba(220,220,220,0.14); color: #DDDDDD; }
+.score-medium { background: rgba(160,160,160,0.14); color: #AAAAAA; }
+.score-low    { background: rgba(100,100,100,0.14); color: var(--text-muted); }
 
-.query-preview { border-radius: var(--radius-md); overflow: hidden; border: 2px solid var(--gold); max-width: 220px; margin: 8px 0; }
+.query-preview { border-radius: var(--radius-md); overflow: hidden; border: 2px solid var(--accent-dim); max-width: 220px; margin: 8px 0; }
 .query-preview img { width: 100%; height: auto; display: block; }
 
 .welcome-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; text-align: center; max-width: 500px; margin: 60px auto; }
-.welcome-icon { font-size: 3rem; margin-bottom: 12px; }
+.welcome-icon { font-size: 2.4rem; margin-bottom: 12px; color: var(--accent-dim); line-height: 1; }
 .welcome-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--text-primary); margin-bottom: 10px; }
 .welcome-body { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
-.welcome-hint { margin-top: 20px; font-size: 0.8rem; color: var(--gold); background: rgba(201,169,110,0.08); border-radius: var(--radius-sm); padding: 8px 14px; }
+.welcome-hint { margin-top: 20px; font-size: 0.8rem; color: var(--accent-dim); background: rgba(200,200,200,0.06); border-radius: var(--radius-sm); padding: 8px 14px; }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -185,6 +180,15 @@ footer { visibility: hidden; }
 hr { border-color: var(--border) !important; }
 </style>
 """
+
+# ---------------------------------------------------------------------------
+# SVG icon helpers
+# ---------------------------------------------------------------------------
+_ICON_SEARCH = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
+_ICON_TRASH  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>'
+_ICON_INDEX  = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>'
+_ICON_MODEL  = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>'
+_ICON_STORE  = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>'
 
 
 # ---------------------------------------------------------------------------
@@ -252,16 +256,16 @@ def render_results(results: List[Dict[str, Any]]) -> None:
         img_tag = (
             f'<img src="{img_src}" alt="{name}" loading="lazy" />'
             if img_src
-            else '<div style="height:180px;background:#1A1A30;display:flex;align-items:center;justify-content:center;color:#555;font-size:0.8rem">No Preview</div>'
+            else '<div style="height:180px;background:#1A1A1A;display:flex;align-items:center;justify-content:center;color:#555;font-size:0.8rem">No Preview</div>'
         )
 
         if disc_p and ret_p:
             price_html = (
-                f'<span style="color:var(--gold);font-weight:600">&#8377;{disc_p}</span> '
-                f'<span style="color:var(--text-muted);font-size:0.7rem;text-decoration:line-through">&#8377;{ret_p}</span>'
+                f'<span style="color:#E8E8E8;font-weight:600">&#8377;{disc_p}</span> '
+                f'<span style="color:#777;font-size:0.7rem;text-decoration:line-through">&#8377;{ret_p}</span>'
             )
         elif disc_p:
-            price_html = f'<span style="color:var(--gold);font-weight:600">&#8377;{disc_p}</span>'
+            price_html = f'<span style="color:#E8E8E8;font-weight:600">&#8377;{disc_p}</span>'
         else:
             price_html = ""
 
@@ -287,7 +291,102 @@ def render_results(results: List[Dict[str, Any]]) -> None:
         </div>
         """
     cards_html += "</div>"
-    st.markdown(cards_html, unsafe_allow_html=True)
+
+    # Wrap in a full HTML document with inline styles so st.components.v1.html
+    # can render it correctly (avoids Streamlit's ~1 MB st.markdown size limit
+    # which causes raw HTML to be shown as code when base64 thumbnails are embedded).
+    full_html = f"""<!DOCTYPE html>
+                        <html>
+                        <head>
+                        <style>
+                        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+                        * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+                        body {{ background: transparent; font-family: 'Outfit', sans-serif; }}
+                        .result-grid {{
+                            display: grid;
+                            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                            gap: 16px;
+                            padding: 8px 0;
+                        }}
+                        .result-card {{
+                            background: rgba(255,255,255,0.04);
+                            border: 1px solid rgba(255,255,255,0.09);
+                            border-radius: 16px;
+                            overflow: hidden;
+                            transition: transform 0.2s, box-shadow 0.2s;
+                        }}
+                        .result-card:hover {{
+                            transform: translateY(-4px);
+                            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+                        }}
+                        .result-card img {{
+                            width: 100%;
+                            aspect-ratio: 3/4;
+                            object-fit: cover;
+                            display: block;
+                        }}
+                        .result-card-body {{
+                            padding: 10px 12px 12px;
+                        }}
+                        .result-filename {{
+                            font-size: 0.68rem;
+                            color: #777;
+                            letter-spacing: 0.04em;
+                            margin-bottom: 4px;
+                        }}
+                        .result-name {{
+                            font-size: 0.82rem;
+                            font-weight: 500;
+                            color: #EEE;
+                            line-height: 1.3;
+                            margin-bottom: 6px;
+                        }}
+                        .result-price-row {{
+                            font-size: 0.85rem;
+                            margin-bottom: 8px;
+                        }}
+                        .result-footer {{
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        }}
+                        .result-score {{
+                            font-size: 0.75rem;
+                            padding: 2px 8px;
+                            border-radius: 20px;
+                            background: rgba(255,255,255,0.08);
+                            color: #A0A0A0;
+                        }}
+                        .result-score.score-high {{ color: #E8E8E8; background: rgba(255,255,255,0.14); }}
+                        .result-score.score-mid  {{ color: #B0B0B0; }}
+                        .result-score.score-low  {{ color: #777; }}
+                        .view-btn {{
+                            font-size: 0.72rem;
+                            color: #A0A0A0;
+                            text-decoration: none;
+                            border: 1px solid rgba(255,255,255,0.15);
+                            border-radius: 6px;
+                            padding: 3px 8px;
+                            transition: all 0.2s;
+                        }}
+                        .view-btn:hover {{
+                            color: #EEE;
+                            border-color: rgba(255,255,255,0.4);
+                        }}
+                        </style>
+                        </head>
+                        <body>
+                        {cards_html}
+                        </body>
+                        </html>
+                """
+
+    import streamlit.components.v1 as components
+    # Card height: 3/4 image (~270px at 180px wide) + body (~120px) + gap/padding
+    n_cols = max(1, min(len(results), 4))
+    n_rows = (len(results) + n_cols - 1) // n_cols
+    height = max(520, n_rows * 480 + 32)
+    components.html(full_html, height=height, scrolling=True)
 
 
 # ---------------------------------------------------------------------------
@@ -344,9 +443,9 @@ def main() -> None:
         st.markdown('<div class="sidebar-divider"></div>', unsafe_allow_html=True)
 
         st.markdown(
-            f'<span class="stat-pill">🪡 {saree_index.total_vectors:,} sarees indexed</span>'
-            f'<span class="stat-pill">✦ Marqo FashionSigLIP</span>'
-            f'<span class="stat-pill">🏷️ Byrappa Silks</span>',
+            f'<span class="stat-pill">{_ICON_INDEX} {saree_index.total_vectors:,} sarees indexed</span>'
+            f'<span class="stat-pill">{_ICON_MODEL} Marqo FashionSigLIP</span>'
+            f'<span class="stat-pill">{_ICON_STORE} Byrappa Silks</span>',
             unsafe_allow_html=True,
         )
         st.markdown('<div class="sidebar-divider"></div>', unsafe_allow_html=True)
@@ -370,26 +469,26 @@ def main() -> None:
             key="url_box",
         )
 
-        search_clicked = st.button("🔍  Find Similar Sarees", key="search_btn")
+        search_clicked = st.button("Find Similar Sarees", key="search_btn")
 
         st.markdown('<div class="sidebar-divider"></div>', unsafe_allow_html=True)
 
-        with st.expander("ℹ️ How it works", expanded=False):
+        with st.expander("How it works", expanded=False):
             st.markdown(
                 """
-**Model**: Marqo-FashionSigLIP — fine-tuned for fashion with Generalised
-Contrastive Learning across 7 fashion aspects.
+                    **Model**: Marqo-FashionSigLIP — fine-tuned for fashion with Generalised
+                    Contrastive Learning across 7 fashion aspects.
 
-**Extra colour signal**: HSV colour histogram fused with visual embedding
-(85% visual + 15% colour) for better fine-grained discrimination.
+                    **Extra colour signal**: HSV colour histogram fused with visual embedding
+                    (85% visual + 15% colour) for better fine-grained discrimination.
 
-**Search**: Exact cosine similarity via FAISS `IndexFlatIP`.
+                    **Search**: Exact cosine similarity via FAISS `IndexFlatIP`.
 
-**Agent**: Gemini 1.5 Flash orchestrates tool calls and writes the response.
+                    **Agent**: Gemini 3.5 Flash Lite orchestrates tool calls and writes the response.
                 """
             )
 
-        if st.button("🗑️  Clear chat", key="clear_btn"):
+        if st.button("Clear chat", key="clear_btn"):
             for k in ["messages", "result_history", "pending_image_path", "pending_image_b64"]:
                 st.session_state[k] = [] if k in ("messages", "result_history") else None
             st.session_state.results_store.clear()
@@ -422,10 +521,7 @@ Contrastive Learning across 7 fashion aspects.
         """
         <div class="chat-header">
             <div>
-                <p class="chat-header-title">Aria — Saree Stylist</p>
-                <p class="chat-header-status">
-                    <span class="status-dot"></span> Online · Gemini 1.5 Flash
-                </p>
+                <p class="chat-header-title">Aria - Saree Stylist</p>
             </div>
         </div>
         """,
@@ -441,7 +537,7 @@ Contrastive Learning across 7 fashion aspects.
                 <h2 class="welcome-title">Welcome to TailorTalk</h2>
                 <p class="welcome-body">
                     Upload a saree image from the sidebar and I'll find the most
-                    visually similar designs from the Byrappa Silks catalogue —
+                    visually similar designs from the Byrappa Silks catalogue -
                     over 1,000 unique sarees. I can spot similarities in fabric,
                     weave, colour, border and pallu work.
                 </p>
