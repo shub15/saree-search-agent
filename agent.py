@@ -168,6 +168,7 @@ class SareeAgent:
 
         self._tool = create_search_tool(embedder, index, results_store)
         self._tool_map = {self._tool.name: self._tool}
+        self._results_store = results_store  # kept to clear between turns
 
         llm = ChatGoogleGenerativeAI(
             model=model_name,
@@ -191,6 +192,11 @@ class SareeAgent:
         history : list of BaseMessage, optional
             Previous turns in LangChain message format.
         """
+        # Clear stale results from the previous turn so that if the tool is
+        # NOT called this turn, results_store remains empty and the UI won't
+        # display old cards.
+        self._results_store.clear()
+
         messages: List[BaseMessage] = (
             [SystemMessage(content=SYSTEM_PROMPT)]
             + (history or [])
@@ -202,7 +208,7 @@ class SareeAgent:
 
             # No tool calls → final text answer
             if not response.tool_calls:
-                return response.content or "I found some results for you!"
+                return self._extract_text(response.content) or "How can I help you?"
 
             # Execute every requested tool call
             messages.append(response)
@@ -222,6 +228,25 @@ class SareeAgent:
 
         # Fallback if we hit max iterations without a text response
         return "I completed the search. Please see the results displayed below."
+
+    @staticmethod
+    def _extract_text(content) -> str:
+        """
+        Gemini via langchain-google-genai sometimes returns content as a list
+        of part dicts: [{"type": "text", "text": "..."}, ...].
+        This helper always returns a plain string regardless of format.
+        """
+        if isinstance(content, str):
+            return content
+        if isinstance(content, list):
+            parts = []
+            for part in content:
+                if isinstance(part, dict):
+                    parts.append(part.get("text", ""))
+                elif isinstance(part, str):
+                    parts.append(part)
+            return " ".join(p for p in parts if p).strip()
+        return str(content) if content else ""
 
 
 # ---------------------------------------------------------------------------

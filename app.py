@@ -646,10 +646,17 @@ def main() -> None:
                     reply = "Something went wrong. Please try again."
             st.write(reply)
 
+            # ── Check whether the agent called the search tool ──────────
+            current_results = list(st.session_state.results_store)
+            has_results = bool(current_results)
+            if has_results:
+                st.session_state.result_history.append(current_results)
+                render_results(current_results)
+
         st.session_state.messages.append({
             "role": "assistant",
             "content": reply,
-            "has_results": False,
+            "has_results": has_results,
         })
         st.rerun()
 
